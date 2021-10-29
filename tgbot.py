@@ -43,8 +43,8 @@ async def user_based_dialog_former(msg):
         return
     msg.content = filter_symbol(msg.content, ":", " ")
     user_history = add_to_user_history(msg, history)
-    start_text = 'Сейчас {} год. Я - {}. Встретил{} в чате человека, по имени {}. Решили переписываться.\n'.format(
-        datetime.now().year, cfg.role, ending[cfg.rod],
+    start_text = 'Сейчас {} год. Меня зовут {}. Встретил{} в чате человека, по имени {}. Решили переписываться.\n'.format(
+        datetime.now().year, "Мутя", ending[cfg.rod],
         translit(msg.author.first_name).capitalize())
     dialog_text = ''
     offset = 0
@@ -68,8 +68,8 @@ async def chat_based_dialog_former(msg):
         return
     msg.content = filter_symbol(msg.content, ":", " ")
     chat_history = add_to_chat_history(msg, history)
-    start_text = 'Сейчас {} год. Я - {}. Я решил{} поболтать в чате.\n'.format(
-        datetime.now().year, cfg.role, ending[cfg.rod])
+    start_text = 'Сейчас {} год. Меня зовут {}. Я решил{} поболтать в чате.\n'.format(
+        datetime.now().year, "Мутя", ending[cfg.rod])
     dialog_text = ''
     offset = 0
     while len(start_text + dialog_text) > 1024 or offset == 0:
