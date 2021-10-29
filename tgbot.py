@@ -3,6 +3,7 @@ import telegrampy
 from telegrampy.ext import commands
 from utils import *
 from datetime import datetime
+import re
 
 bot = commands.Bot(cfg.tg_token)
 queue = Queue()
@@ -38,7 +39,8 @@ def process_msg(func):
 @process_msg
 async def user_based_dialog_former(msg):
     """Формирует чат для ввода в gpt, на основе истории диалога с пользователем"""
-    if not msg.content or len(msg.content) < 1 or msg.content[0] == '/':
+    #if not msg.content or len(msg.content) < 1 or msg.content[0] == '/':
+    if lower(msg.content.match("мутя") == False:
         return
     msg.content = filter_symbol(msg.content, ":", " ")
     user_history = add_to_user_history(msg, history)
@@ -63,7 +65,8 @@ async def user_based_dialog_former(msg):
 @process_msg
 async def chat_based_dialog_former(msg):
     """Формирует чат для ввода в gpt, на основе истории диалога в беседе"""
-    if not msg.content or len(msg.content) < 1 or msg.content[0] == '/':
+    #if not msg.content or len(msg.content) < 1 or msg.content[0] == '/':
+    if lower(msg.content.match("мутя") == False:
         return
     msg.content = filter_symbol(msg.content, ":", " ")
     chat_history = add_to_chat_history(msg, history)
