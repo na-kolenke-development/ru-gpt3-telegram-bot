@@ -42,6 +42,7 @@ async def user_based_dialog_former(msg):
     if not msg.content or len(msg.content) < 1 or msg.content[0] == '/' or bool(re.search("мутя", msg.content.lower())) == False:
         return
     msg.content = filter_symbol(msg.content, ":", " ")
+    msg.content = re.sub(r'мутя.', '', msg.content.lower())
     user_history = add_to_user_history(msg, history)
     start_text = 'Я взрослая девушка. Встретил{} в чате человека, по имени {}. Решили поболтать.\n'.format(
         ending[cfg.rod],
@@ -67,6 +68,7 @@ async def chat_based_dialog_former(msg):
     if not msg.content or len(msg.content) < 1 or msg.content[0] == '/' or bool(re.search("мутя", msg.content.lower())) == False:
         return
     msg.content = filter_symbol(msg.content, ":", " ")
+    msg.content = re.sub(r'мутя.', '', msg.content.lower())
     chat_history = add_to_chat_history(msg, history)
     start_text = 'Я взрослая девушка. Я решил{} поболтать в чате.\n'.format(
         ending[cfg.rod])
