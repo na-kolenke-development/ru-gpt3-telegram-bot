@@ -40,7 +40,7 @@ def process_msg(func):
 async def user_based_dialog_former(msg):
     """Формирует чат для ввода в gpt, на основе истории диалога с пользователем"""
     #if not msg.content or len(msg.content) < 1 or msg.content[0] == '/':
-    if msg.content.lower().match("мутя") == False:
+    if re.findall("мутя", msg.content.lower()) == False:
         return
     msg.content = filter_symbol(msg.content, ":", " ")
     user_history = add_to_user_history(msg, history)
@@ -66,7 +66,7 @@ async def user_based_dialog_former(msg):
 async def chat_based_dialog_former(msg):
     """Формирует чат для ввода в gpt, на основе истории диалога в беседе"""
     #if not msg.content or len(msg.content) < 1 or msg.content[0] == '/':
-    if msg.content.lower().match("мутя") == False:
+    if re.findall("мутя", msg.content.lower()) == False:
         return
     msg.content = filter_symbol(msg.content, ":", " ")
     chat_history = add_to_chat_history(msg, history)
