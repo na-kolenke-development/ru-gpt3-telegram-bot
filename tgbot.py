@@ -98,6 +98,10 @@ async def tg_reset(ctx):
     #TODO: ограничить возможность очистки истории чата только для админов чата
     return
 
+@bot.command(name='dota')
+@process_msg
+async def tg_dota(ctx):
+    queue.add_to(queue.build_item('@just_automate_it, @inscii, @ykolhs, @dorlovsky, дотадебилы, общий сбор!', ctx, historic_response_parser), msg.author.id)
 
 @bot.command(name='word')
 @process_msg
