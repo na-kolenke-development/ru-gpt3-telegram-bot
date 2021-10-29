@@ -160,8 +160,12 @@ async def tg_continue(ctx):
 async def tg_gpt(ctx):
     """Ввод сырого текста в gpt"""
     queue.add_to(queue.build_item(get_command_text(ctx.message.content), ctx), ctx.author.id)
-
-
+    
+@bot.command(name='dota')
+@process_msg
+async def tg_dota(ctx):
+    queue.add_to(queue.build_item('@just_automate_it, @inscii, @ykolhs, @dorlovsky, дотадебилы, общий сбор!', ctx ), ctx.author.id) 
+        
 @bot.command(name=cfg.stop_command)
 @process_msg
 async def tg_stop(ctx):
