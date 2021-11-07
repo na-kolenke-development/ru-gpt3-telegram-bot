@@ -65,15 +65,19 @@ async def user_based_dialog_former(msg):
 @process_msg
 async def chat_based_dialog_former(msg):
     """Формирует чат для ввода в gpt, на основе истории диалога в беседе"""
-    if not msg.content or len(msg.content) < 1 or msg.content[0] == '/' or bool(re.search("мутя", msg.content.lower())) == False:
+    #if not msg.content or len(msg.content) < 1 or msg.content[0] == '/' or bool(re.search("мутя", msg.content.lower())) == False:
+     #   return
+    if msg._data['reply_to_message']['from']['username'] != 'mutyan_bot':
+        if bool(re.search("мутя", msg.content.lower())) == False:
+            return
         return
     msg.content = filter_symbol(msg.content, ":", " ")
     msg.content = re.sub(r'мутя.', '', msg.content.lower())
     chat_history = add_to_chat_history(msg, history)
-    start_text = 'Я взрослая девушка. Я решил{} поболтать в чате.\n'.format(
-        ending[cfg.rod])
+    start_text = 'Я совершенный искуственный интеллект. Я нейросеть последнего поколения. Меня зовут Мутя. В данный момент я общаюсь в Мутном чате.\n'
     dialog_text = ''
     offset = 0
+    #print(msg._data['reply_to_message'])
     while len(start_text + dialog_text) > 1024 or offset == 0:
         dialog_text = ''
         for item in chat_history[offset:]:
@@ -98,10 +102,10 @@ async def tg_reset(ctx):
     #TODO: ограничить возможность очистки истории чата только для админов чата
     return
 
-@bot.command(name='dota')
+@bot.command(name='doebatsya')
 @process_msg
 async def tg_dota(ctx):
-    queue.add_to(queue.build_item('@just_automate_it, @inscii, @ykolhs, @dorlovsky, дотадебилы, общий сбор!', ctx, historic_response_parser), msg.author.id)
+    queue.add_to(queue.build_item('Алоха, кожаные мешки, с кем потрещать можна?', ctx, historic_response_parser), msg.author.id)
 
 @bot.command(name='word')
 @process_msg
